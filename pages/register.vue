@@ -59,12 +59,6 @@
               >Senha:</label
             >
             <div class="relative">
-              <!-- <div class="absolute left-0 top-0 h-full w-10 text-gray-400">
-                <span>
-                  <i class="fas fa-lock text-red-500"></i>
-                </span>
-              </div> -->
-
               <input
                 id="password"
                 v-model="register.password"
@@ -76,7 +70,8 @@
           </div>
 
           <div v-if="error" class="bg-red-100 text-red-600 p-5">
-            Ops, usuário já cadastrado. Faça login ou tente novamente.
+            Ops, usuário já cadastrado ou dados faltando. Faça login ou tente
+            novamente.
           </div>
 
           <div v-if="success" class="bg-green-100 text-green-600 p-5">
@@ -85,7 +80,7 @@
 
           <div class="flex w-full">
             <div
-              class="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-orange-pallet hover:bg-red-500 rounded-2xl py-2 w-full transition duration-150 ease-in uppercase cursor-pointer"
+              class="mt-2 text-white text-center text-sm sm:text-base bg-orange-pallet rounded-2xl py-2 w-full transition duration-150 _hover uppercase cursor-pointer"
               @click="userRegister()"
             >
               Registrar
@@ -102,7 +97,7 @@
           >Já possui um conta?
           <nuxt-link
             to="/login"
-            class="text-xs ml-2 orange-pallet font-semibold"
+            class="text-xs ml-2 _hover orange-pallet font-semibold"
             >Faça login</nuxt-link
           ></span
         >

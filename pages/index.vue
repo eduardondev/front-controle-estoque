@@ -5,8 +5,8 @@
         Bem-vindo ao controle de estoque!
       </h1>
       <hr />
-      <div class="flex items-center">
-        <nuxt-link to="/register" class="flex-grow orange-pallet text-gray-500"
+      <div class="flex items-center justify-between">
+        <nuxt-link to="/register" class="orange-pallet text-gray-500"
           >Criar uma conta</nuxt-link
         >
 

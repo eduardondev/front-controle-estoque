@@ -47,3 +47,9 @@
 .orange-pallet {
   color: #ff4c29;
 }
+
+._hover:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.3s;
+}

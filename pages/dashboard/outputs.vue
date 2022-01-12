@@ -1,10 +1,42 @@
 <template>
   <div>
     <h1 class="text-xl mb-2 text-center">
-      Últimas {{ formatOutputs.length }} saídas
+      Exibindo {{ formatedOutputs.length }} saídas
     </h1>
 
-    <div class="overflow-auto rounded-lg shadow hidden md:block">
+    <OutputModal v-if="modal" />
+    <ReaderCode />
+
+    <div class="md:flex md:justify-end md:mr-0">
+      <div>
+        <button
+          class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white w-full my-2 md:mx-1 md:w-auto show-modal"
+          @click="showModal()"
+        >
+          Escanear código de barra
+        </button>
+      </div>
+
+      <div>
+        <button
+          class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white w-full my-2 md:mx-1 md:w-auto show-modal"
+          @click="showModal()"
+        >
+          Cadastrar saída manual
+        </button>
+      </div>
+
+      <div>
+        <button
+          class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white w-full my-2 md:mx-1 md:w-auto show-modal"
+          @click="exportData()"
+        >
+          Exportar relatório
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-auto rounded-lg shadow hidden md:block pb-2">
       <table class="w-full">
         <thead class="bg-gray-50 border-b-2 border-gray-200">
           <tr>
@@ -35,10 +67,10 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
-          <tr v-for="out in formatOutputs" :key="out.id" class="bg-white">
+          <tr v-for="out in formatedOutputs" :key="out.id" class="bg-white">
             <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
               <nuxt-link
-                :to="'/output/' + out.orderId"
+                :to="'/saida/' + out.orderId"
                 class="font-bold text-blue-500 hover:underline"
               >
                 {{ out.orderId }}</nuxt-link
@@ -104,11 +136,13 @@
       </table>
     </div>
 
-    <span class="text-sm">Exibindo {{ formatOutputs.length }} saídas</span>
+    <span class="text-sm py-2"
+      >Exibindo {{ formatedOutputs.length }} saídas</span
+    >
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:hidden">
       <div
-        v-for="out in formatOutputs"
+        v-for="out in formatedOutputs"
         :key="out.id"
         class="bg-white space-y-3 p-4 rounded-lg shadow"
       >
@@ -189,13 +223,13 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'SaidasPage',
   layout: 'default',
   middleware: 'auth',
   async asyncData({ $axios }) {
-    const outputs = await $axios.$get('/outputs?limit=25')
+    const outputs = await $axios.$get('/outputs?limit=50')
 
-    const formatOutputs = outputs.outputs.map((item) => {
+    const formatedOutputs = outputs.outputs.map((item) => {
       const statusName = outputs.status.find((sta) => {
         return sta.code === item.status
       })
@@ -208,7 +242,45 @@ export default {
       return item
     })
 
-    return { formatOutputs }
+    return { formatedOutputs }
+  },
+  data() {
+    return {
+      modal: 0,
+    }
+  },
+  created() {
+    this.$root.$refs.Outputs = this
+  },
+  methods: {
+    showModal() {
+      !this.modal ? (this.modal = 1) : (this.modal = 0)
+    },
+    exportData() {
+      const data = JSON.parse(JSON.stringify(this.formatedOutputs))
+
+      const fields = Object.keys(data[0])
+      const replacer = function (key, value) {
+        return value === null ? '' : value
+      }
+
+      let csv = data.map(function (row) {
+        return fields
+          .map(function (fieldName) {
+            return JSON.stringify(row[fieldName], replacer)
+          })
+          .join(',')
+      })
+
+      csv.unshift(fields.join(','))
+      csv = csv.join('\r\n')
+
+      const anchor = document.createElement('a')
+      anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv)
+      anchor.target = '_blank'
+      anchor.download = `Relatorio-${Date.now()}.csv`
+      anchor.click()
+    },
   },
 }
 </script>

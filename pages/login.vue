@@ -64,7 +64,7 @@
 
           <div class="flex w-full">
             <div
-              class="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-orange-pallet hover:bg-red-500 rounded-2xl py-2 w-full transition duration-150 ease-in uppercase cursor-pointer"
+              class="mt-2 text-center text-white text-sm sm:text-base bg-orange-pallet rounded-2xl py-2 w-full transition duration-150 _hover uppercase cursor-pointer"
               @click="userLogin()"
             >
               Entrar
@@ -81,7 +81,7 @@
           >Não possui uma conta ainda?
           <nuxt-link
             to="/register"
-            class="text-xs ml-2 text-blue-500 orange-pallet font-semibold"
+            class="text-xs transition duration-150 _hover ml-2 text-blue-500 orange-pallet font-semibold"
             >Registrar agora</nuxt-link
           ></span
         >

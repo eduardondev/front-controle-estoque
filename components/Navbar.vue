@@ -38,12 +38,12 @@
       >
 
       <nuxt-link
-        to="/dashboard/saidas"
+        to="/dashboard/outputs"
         class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 transition duration-150"
         >Saídas</nuxt-link
       >
       <nuxt-link
-        to="/dashboard/entradas"
+        to="/dashboard/entries"
         class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 sm:mt-0 sm:ml-2 transition duration-150"
         >Entradas</nuxt-link
       >
