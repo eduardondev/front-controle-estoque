@@ -162,6 +162,20 @@
           </div>
         </form>
       </div>
+
+      <client-only>
+        <v-quagga
+          v-if="showReadBarcode"
+          class="flex justify-center items-center barcode-width"
+          :onDetected="logIt"
+          :readerSize="{
+            width: 400,
+            height: 150,
+          }"
+          :readerTypes="['ean_reader']"
+        ></v-quagga>
+      </client-only>
+
       <div v-if="error" class="bg-red-100 text-red-600 text-center p-5">
         Ops, informações faltando ou já existe um registro com esse ID. Tente
         novamente.
@@ -171,7 +185,7 @@
       </div>
       <div class="flex justify-center items-center w-100 border-t p-3">
         <button
-          class="bg-red-600 hover:bg-red-700 md:w-1/6 px-5 py-1 rounded text-white mr-1 close-modal"
+          class="bg-red-600 hover:bg-red-700 md:w-1/6 px-5 py-1 rounded text-white mr-2 close-modal"
           @click="callShowModal()"
         >
           Cancelar
@@ -181,6 +195,12 @@
           @click="saveModal()"
         >
           Salvar
+        </button>
+        <button
+          class="bg-blue-600 hover:bg-blue-700 md:w-2/6 px-5 py-1 rounded text-white ml-3"
+          @click="readBarCode()"
+        >
+          Escanear código de barra
         </button>
       </div>
     </div>
@@ -202,6 +222,7 @@ export default {
       quantity: '',
       error: 0,
       message: 0,
+      showReadBarcode: 0,
     }
   },
   methods: {
@@ -248,6 +269,20 @@ export default {
         }
       } catch (err) {
         if (err) this.error = 1
+      }
+    },
+    readBarCode() {
+      this.showReadBarcode = 1
+    },
+    logIt(data) {
+      /* overflow hidden */
+
+      if (data.codeResult.code) {
+        this.orderId = data.codeResult.code
+        this.tracker = data.codeResult.code
+        this.sku = data.codeResult.code.slice(0, 7)
+
+        this.showReadBarcode = 0
       }
     },
   },

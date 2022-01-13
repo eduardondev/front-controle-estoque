@@ -46,8 +46,9 @@
             </td>
             <td
               v-if="out.status === 1"
-              :name="out.status"
-              class="p-1 text-xs text-center font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-130"
+              :name="out.statusName"
+              :class="'status-' + out.status"
+              class="p-1 status text-xs text-center font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-130"
             >
               {{ out.statusName }}
             </td>

@@ -5,17 +5,9 @@
     </h1>
 
     <OutputModal v-if="modal" />
-    <ReaderCode />
 
     <div class="md:flex md:justify-end md:mr-0">
-      <div>
-        <button
-          class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white w-full my-2 md:mx-1 md:w-auto show-modal"
-          @click="showModal()"
-        >
-          Escanear código de barra
-        </button>
-      </div>
+      <div></div>
 
       <div>
         <button
@@ -246,6 +238,11 @@ export default {
   },
   data() {
     return {
+      readerSize: {
+        width: 200,
+        height: 100,
+      },
+      detecteds: [],
       modal: 0,
     }
   },
