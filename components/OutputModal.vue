@@ -169,8 +169,8 @@
           class="flex justify-center items-center barcode-width"
           :onDetected="logIt"
           :readerSize="{
-            width: 400,
-            height: 150,
+            width: 350,
+            height: 350,
           }"
           :readerTypes="['ean_reader']"
         ></v-quagga>
@@ -272,7 +272,9 @@ export default {
       }
     },
     readBarCode() {
-      this.showReadBarcode = 1
+      !this.showReadBarcode
+        ? (this.showReadBarcode = 1)
+        : (this.showReadBarcode = 0)
     },
     logIt(data) {
       /* overflow hidden */

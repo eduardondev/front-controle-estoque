@@ -54,12 +54,7 @@
   transition: 0.3s;
 }
 
-.barcode-width {
-  width: 25rem;
-}
-
 .viewport canvas[data-v-8d1d8f02] {
   position: absolute;
-  left: 0;
   top: 1 !important;
 }
