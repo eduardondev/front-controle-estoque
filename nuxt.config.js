@@ -44,7 +44,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', 'cookie-universal-nuxt'],
 
   axios: {
-    baseURL: 'https://api.eduardonunes.dv1ev.br/controle-estoque/',
+    baseURL: 'https://api.eduardonunes.dev.br/controle-estoque/',
   },
   auth: {
     strategies: {
