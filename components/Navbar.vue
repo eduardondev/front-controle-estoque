@@ -42,12 +42,12 @@
         class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 transition duration-150"
         >Saídas</nuxt-link
       >
-      <nuxt-link
+      <!-- <nuxt-link
         to="/dashboard/entries"
         class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 sm:mt-0 sm:ml-2 transition duration-150"
         disabled
         >Entradas</nuxt-link
-      >
+      > -->
       <button
         class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 sm:mt-0 sm:ml-2 transition duration-150"
         @click="logout()"
