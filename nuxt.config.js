@@ -45,7 +45,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', 'cookie-universal-nuxt'],
 
   axios: {
-    baseURL: 'http://137.184.146.241/controle-estoque/v1',
+    baseURL: 'https://137.184.146.241/controle-estoque/v1',
   },
   auth: {
     strategies: {
