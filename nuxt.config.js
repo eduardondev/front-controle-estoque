@@ -2,6 +2,7 @@ export default {
   server: {
     port: 5001,
   },
+  target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'front-controle-estoque',
@@ -44,7 +45,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', 'cookie-universal-nuxt'],
 
   axios: {
-    baseURL: 'https://api.eduardonunes.dev.br/controle-estoque/v1',
+    baseURL: 'http://137.184.146.241/controle-estoque/v1',
   },
   auth: {
     strategies: {
