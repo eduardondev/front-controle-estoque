@@ -28,24 +28,19 @@ export default {
   css: ['~/layouts/global.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vue-quagga', mode: 'client' }],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
-  ],
+  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/axios', '@nuxtjs/auth', 'cookie-universal-nuxt'],
 
   axios: {
-    baseURL: 'https://app.eduardonunes.dev.br/controle-estoque/v1',
+    baseURL: 'http://127.0.0.1:3333',
   },
   auth: {
     strategies: {
@@ -54,18 +49,19 @@ export default {
           login: {
             url: '/login',
             method: 'post',
-            propertyName: 'token',
+            propertyName: 'data.token',
           },
-          user: {
-            url: '/auth',
-            method: 'get',
-            propertyName: null,
-          },
+          user: false,
         },
       },
     },
     redirect: {
       home: '/dashboard',
+    },
+    cookie: false,
+    localStorage: false,
+    token: {
+      prefix: 'token.',
     },
   },
 

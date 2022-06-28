@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-light-gray-pallet sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3"
+    class="bg-green-500 sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3"
   >
     <div class="flex items-center justify-between px-4 py-3 sm:p-0">
       <div class="text-cyan w- md:text-2xl sm:text-base w-20">
@@ -33,23 +33,29 @@
     >
       <nuxt-link
         to="/dashboard"
-        class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 transition duration-150"
+        class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-700 transition duration-150"
         >Home</nuxt-link
       >
 
       <nuxt-link
-        to="/dashboard/outputs"
-        class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 transition duration-150"
-        >Saídas</nuxt-link
+        to="/dashboard/members"
+        class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-700 transition duration-150"
+        >Membros</nuxt-link
+      >
+
+      <nuxt-link
+        to="/dashboard/churchs"
+        class="block px-4 py-1 text-white text-lg rounded hover:bg-gray-700 transition duration-150"
+        >Igrejas</nuxt-link
       >
       <!-- <nuxt-link
         to="/dashboard/entries"
-        class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 sm:mt-0 sm:ml-2 transition duration-150"
+        class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-700 sm:mt-0 sm:ml-2 transition duration-150"
         disabled
         >Entradas</nuxt-link
       > -->
       <button
-        class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-500 sm:mt-0 sm:ml-2 transition duration-150"
+        class="mt-1 block px-4 py-1 text-white text-lg rounded hover:bg-gray-700 sm:mt-0 sm:ml-2 transition duration-150"
         @click="logout()"
       >
         Sair
@@ -75,12 +81,4 @@ export default {
 }
 </script>
 
-<style scoped>
-a:hover {
-  background-color: #ff4c29;
-}
-
-button:hover {
-  background-color: #ff4c29;
-}
-</style>
+<style></style>

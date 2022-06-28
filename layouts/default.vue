@@ -12,9 +12,4 @@ export default {
 }
 </script>
 
-<style>
-a,
-button {
-  color: #ff4c29;
-}
-</style>
+<style></style>

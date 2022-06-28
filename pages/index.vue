@@ -1,5 +1,6 @@
 <template>
-  <div class="flex content-center fixed inset-0 bg-gray-100">
+  <div></div>
+  <!-- <div class="flex content-center fixed inset-0 bg-gray-100">
     <div class="bg-white border m-auto p-10 rounded-3xl shadow-lg space-y-6">
       <h1 class="font-semibold text-3xl orange-pallet flex-grow">
         Bem-vindo ao controle de estoque!
@@ -17,12 +18,16 @@
         >
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
+  layout: 'simple',
+  created() {
+    this.$router.push('/login')
+  },
 }
 </script>
 

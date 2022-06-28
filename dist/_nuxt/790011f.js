@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{291:function(n,e,t){"use strict";t.r(e);var l={name:"EntradasPage"},r=t(18),component=Object(r.a)(l,(function(){var n=this.$createElement;return(this._self._c||n)("div")}),[],!1,null,null,null);e.default=component.exports}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{291(n,e,t){"use strict";t.r(e);const l={name:"EntradasPage"}; const r=t(18); const component=Object(r.a)(l,(function(){const n=this.$createElement;return(this._self._c||n)("div")}),[],!1,null,null,null);e.default=component.exports}}]);

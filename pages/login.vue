@@ -2,77 +2,76 @@
   <div
     class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
   >
-    <div
-      class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-3xl w-50 max-w-md"
-    >
-      <div class="font-medium self-center text-xl sm:text-3xl orange-pallet">
-        Login
-      </div>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <form class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <h3 class="text-center text-indigo-600 text-2xl font-bold">Login</h3>
 
-      <div class="mt-10">
-        <form action="#">
-          <div class="flex flex-col mb-5">
-            <label for="email" class="mb-1 text-xs tracking-wide text-gray-600"
-              >Endereço de e-mail:</label
+        <div>
+          <label
+            for="email"
+            class="block text-sm font-medium leading-5 mb-1 mt-6 text-gray-700"
+          >
+            E-mail
+          </label>
+          <div>
+            <input
+              v-model="login.email"
+              type="text"
+              placeholder="joao@email.com"
+              name="email"
+              class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full"
+            />
+          </div>
+        </div>
+        <div class="mt-6">
+          <label
+            for="password"
+            class="block text-sm font-medium leading-5 text-gray-700"
+          >
+            Senha
+          </label>
+          <div>
+            <input
+              v-model="login.password"
+              type="password"
+              placeholder="********"
+              name="password"
+              class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full"
+            />
+          </div>
+        </div>
+        <div class="mt-2 flex items-center justify-end">
+          <div class="text-xs leading-5">
+            <nuxt-link
+              to="/reset-password"
+              class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:underline transition ease-in-out duration-150"
             >
-            <div class="relative">
-              <div
-                class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
-              >
-                <i class="fas fa-at text-blue-500"></i>
-              </div>
-
-              <input
-                id="email"
-                v-model="login.email"
-                type="email"
-                name="email"
-                class="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                placeholder="Preencha seu e-mail"
-              />
-            </div>
+              Esqueceu a senha?
+            </nuxt-link>
           </div>
-          <div class="flex flex-col mb-6">
-            <label
-              for="password"
-              class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-              >Senha:</label
-            >
-            <div class="relative">
-              <div
-                class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400"
-              >
-                <span>
-                  <i class="fas fa-lock text-blue-500"></i>
-                </span>
-              </div>
+        </div>
 
-              <input
-                id="password"
-                v-model="login.password"
-                type="password"
-                name="password"
-                class="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                placeholder="Preencha sua senha"
-              />
-            </div>
-          </div>
+        <div
+          v-if="errorRequest"
+          class="text-center bg-red-200 text-red-600 p-4 mt-6 rounded-md"
+        >
+          Usuário não encontrado.
+        </div>
 
-          <div v-if="error" class="bg-red-100 text-red-600 p-5">
-            Ops, algo errado. Tente novamente.
-          </div>
-
-          <div class="flex w-full">
-            <div
-              class="mt-2 text-center text-white text-sm sm:text-base bg-orange-pallet rounded-2xl py-2 w-full transition duration-150 _hover uppercase cursor-pointer"
+        <div class="mt-6">
+          <span class="block w-full rounded-md shadow-sm"
+            ><button
+              type="button"
+              class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
               @click="userLogin()"
             >
               Entrar
-            </div>
-          </div>
-        </form>
-      </div>
+            </button></span
+          >
+        </div>
+      </form>
     </div>
+
     <div class="flex justify-center items-center mt-6">
       <div
         class="inline-flex items-center text-gray-700 font-medium text-xs text-center"
@@ -81,7 +80,7 @@
           >Não possui uma conta ainda?
           <nuxt-link
             to="/register"
-            class="text-xs transition duration-150 _hover ml-2 text-blue-500 orange-pallet font-semibold"
+            class="text-xs transition duration-150 _hover ml-2 text-indigo-600 font-semibold"
             >Registrar agora</nuxt-link
           ></span
         >
@@ -97,32 +96,49 @@ export default {
   data() {
     return {
       login: {
-        email: '',
-        password: '',
+        email: 'eduardo@gmail.com',
+        password: '123',
       },
-      error: false,
+      errorInputs: false,
+      errorRequest: false,
+      successRequest: false,
+      successInputs: false,
     }
   },
   methods: {
-    verificarInputs() {
+    verifyInputs() {
       if (!this.login.email || !this.login.password) {
-        this.error = true
+        this.successInputs = false
+        this.errorInputs = false
+        this.errorRequest = false
+        this.successRequest = false
+        this.errorInputs = true
 
         return false
       }
 
-      return true
+      if (this.login.email && this.login.password) {
+        this.errorInputs = false
+        this.errorInputs = false
+        this.errorRequest = false
+        this.successRequest = false
+        this.successInputs = true
+
+        return true
+      }
     },
     async userLogin() {
       this.error = false
       try {
-        await this.$auth.loginWith('local', {
-          data: this.login,
-        })
+        if (this.verifyInputs()) {
+          await this.$auth.loginWith('local', {
+            data: this.login,
+          })
 
-        this.$route.push('/dashboard')
+          this.$route.push('/dashboard')
+        }
       } catch (err) {
-        this.error = true
+        this.errorRequest = true
       }
     },
   },

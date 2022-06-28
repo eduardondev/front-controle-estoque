@@ -1,10 +1,31 @@
 <template>
   <div
-    class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
+    class="modal h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
   >
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <!-- modal -->
+    <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-3xl">
       <form class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <h3 class="text-center text-indigo-600 text-2xl font-bold">Cadastro</h3>
+        <div class="flex justify-end mb-6">
+          <button class="text-black close-modal" @click="callShowModal()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              style="fill: #000000"
+            >
+              <path
+                d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <h3 class="text-center text-indigo-600 text-2xl font-bold">
+          Cadastro de novo usuário
+        </h3>
 
         <div class="flex justify-around items-center">
           <div class="mt-6">
@@ -44,9 +65,7 @@
               />
             </div>
           </div>
-        </div>
 
-        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="number"
@@ -63,22 +82,6 @@
                 class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
               />
             </div>
-          </div>
-
-          <div class="mt-6">
-            <label
-              for="church"
-              class="block text-sm font-medium leading-5 text-gray-700"
-            >
-              Igreja
-            </label>
-            <input
-              v-model="register.church"
-              type="text"
-              placeholder="Sua igreja"
-              name="church"
-              class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
-            />
           </div>
         </div>
 
@@ -120,9 +123,7 @@
               />
             </div>
           </div>
-        </div>
 
-        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="addressZipCode"
@@ -140,7 +141,9 @@
               />
             </div>
           </div>
+        </div>
 
+        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="address"
@@ -159,9 +162,7 @@
               />
             </div>
           </div>
-        </div>
 
-        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="address_number"
@@ -236,6 +237,22 @@
               :value="register.address_state"
             />
           </div>
+
+          <div class="mt-6">
+            <label
+              for="profession"
+              class="block text-sm font-medium leading-5 text-gray-700"
+            >
+              Profissão
+            </label>
+            <input
+              v-model="register.profession"
+              type="text"
+              name="profession"
+              placeholder="Engenheiro"
+              class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
+            />
+          </div>
         </div>
 
         <div class="flex justify-around items-center">
@@ -273,9 +290,7 @@
               :disabled="!register.have_children"
             />
           </div>
-        </div>
 
-        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="working_now"
@@ -293,7 +308,9 @@
               <option :value="false">Não</option>
             </select>
           </div>
+        </div>
 
+        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="religion"
@@ -309,9 +326,23 @@
               class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
             />
           </div>
-        </div>
 
-        <div class="flex justify-around items-center">
+          <div class="mt-6">
+            <label
+              for="church"
+              class="block text-sm font-medium leading-5 text-gray-700"
+            >
+              Igreja
+            </label>
+            <input
+              v-model="register.church"
+              type="text"
+              placeholder="Sua igreja"
+              name="church"
+              class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
+            />
+          </div>
+
           <div class="mt-6">
             <label
               for="marital_state"
@@ -333,7 +364,9 @@
               <option value="união estável">União estável</option>
             </select>
           </div>
+        </div>
 
+        <div class="flex justify-around items-center">
           <div class="mt-6">
             <label
               for="birth_date"
@@ -346,24 +379,6 @@
               type="date"
               placeholder="Sua religião"
               name="birth_date"
-              class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
-            />
-          </div>
-        </div>
-
-        <div class="flex justify-around items-center">
-          <div class="mt-6">
-            <label
-              for="profession"
-              class="block text-sm font-medium leading-5 text-gray-700"
-            >
-              Profissão
-            </label>
-            <input
-              v-model="register.profession"
-              type="text"
-              name="profession"
-              placeholder="Engenheiro"
               class="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-44"
             />
           </div>
@@ -396,7 +411,7 @@
           v-if="errorRequest"
           class="text-center bg-red-200 text-red-600 p-4 mt-6 rounded-md"
         >
-          Ops... algo deu errado!
+          Já existe um usuário cadastrado com esse e-mail.
         </div>
 
         <div
@@ -426,34 +441,20 @@
         </div>
       </form>
     </div>
-
-    <div class="flex justify-center items-center mt-6 mb-6">
-      <div
-        class="inline-flex items-center text-gray-700 font-medium text-xs text-center"
-      >
-        <span class="ml-2"
-          >Já possui um conta?
-          <nuxt-link
-            to="/login"
-            class="text-xs ml-2 _hover text-indigo-600 font-semibold"
-            >Faça login</nuxt-link
-          ></span
-        >
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'RegisterPage',
-  layout: 'simple',
+  name: 'NewUserModal',
   data() {
     return {
+      error: 0,
+      message: 0,
       register: {
         name: 'Eduardo',
         email: 'eduardo@gmail.com',
-        number: 41999999999,
+        number: '41999999999',
         password: '123',
         birth_date: '2002-09-09',
         profession: 'Dev',
@@ -484,6 +485,7 @@ export default {
   },
   watch: {
     addressZipCode(zip) {
+      console.log(zip)
       if (zip.length === 8) {
         fetch(`https://viacep.com.br/ws/${zip}/json`)
           .then((res) => res.json())
@@ -494,6 +496,9 @@ export default {
     },
   },
   methods: {
+    callShowModal() {
+      this.$root.$refs.Index.showNewUserModal()
+    },
     verifyInputs() {
       if (
         !this.register.name ||
@@ -583,6 +588,7 @@ export default {
             this.errorPassword = false
             this.successRequest = true
           }
+
           if (create.status !== 201) {
             this.successInputs = false
             this.errorInputs = false
@@ -590,6 +596,8 @@ export default {
             this.successRequest = false
             this.errorRequest = true
           }
+
+
         }
       } catch (err) {
         if (err) {

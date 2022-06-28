@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarSimple />
     <Nuxt />
   </div>
 </template>
@@ -12,10 +11,6 @@ export default {
 </script>
 
 <style>
-a,
-button {
-  color: #ff4c29;
-}
 
 button:hover {
   cursor: pointer;

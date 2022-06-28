@@ -167,12 +167,12 @@
         <v-quagga
           v-if="showReadBarcode"
           class="flex justify-center items-center barcode-width"
-          :onDetected="logIt"
-          :readerSize="{
+          :on-detected="logIt"
+          :reader-size="{
             width: 350,
             height: 350,
           }"
-          :readerTypes="['ean_reader']"
+          :reader-types="['ean_reader']"
         ></v-quagga>
       </client-only>
 
